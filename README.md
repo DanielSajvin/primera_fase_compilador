@@ -1,7 +1,3 @@
-Aquí tienes un README diseñado para tu repositorio. He incluido una sección de descripción que explica qué es un analizador léxico y su papel en un compilador:
-
----
-
 # Analizador Léxico
 
 ## Descripción
