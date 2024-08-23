@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1182</width>
-    <height>884</height>
+    <height>1207</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1165,7 +1165,7 @@ QStatusBar
       <x>10</x>
       <y>10</y>
       <width>1151</width>
-      <height>851</height>
+      <height>1171</height>
      </rect>
     </property>
     <property name="title">
@@ -1193,6 +1193,12 @@ QStatusBar
        <height>41</height>
       </rect>
      </property>
+     <property name="dragEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QFrame" name="frame">
      <property name="geometry">
@@ -1200,7 +1206,7 @@ QStatusBar
        <x>10</x>
        <y>130</y>
        <width>1131</width>
-       <height>641</height>
+       <height>971</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -1343,12 +1349,38 @@ QStatusBar
        <string>Código Fuente</string>
       </property>
      </widget>
+     <widget class="QTextEdit" name="txt_errores">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>650</y>
+        <width>671</width>
+        <height>311</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>620</y>
+        <width>271</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Lucida Sans Unicode&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Carácteres No Definidos</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QPushButton" name="btn_exportar">
      <property name="geometry">
       <rect>
-       <x>1000</x>
-       <y>790</y>
+       <x>1030</x>
+       <y>1120</y>
        <width>111</width>
        <height>41</height>
       </rect>
