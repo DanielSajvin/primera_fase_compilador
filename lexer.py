@@ -10,7 +10,7 @@ import ply.lex as lex
 import cairo
 
 Ui_MainWindow, QMainWindow = loadUiType(
-    os.path.join(os.path.dirname(__file__), "views", "principal.ui")
+    os.path.join(os.path.dirname(__file__), "views", "compiler.ui")
 )
 
 # Diccionarios para contar la frecuencia de identificadores y palabras clave

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\USUARIO\Desktop\primera_fase_compilador\views\principal.ui'
+# Form implementation generated from reading ui file 'c:\Users\USUARIO\Desktop\2do. Semestre 2024\primera_fase_compilador\views\principal.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1182, 1207)
+        MainWindow.resize(1175, 1119)
         MainWindow.setStyleSheet("/*-----QWidget-----*/\n"
 "QWidget\n"
 "{\n"
@@ -1160,19 +1160,22 @@ class Ui_MainWindow(object):
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(10, 10, 1151, 1171))
-        self.groupBox.setObjectName("groupBox")
-        self.btn_buscar = QtWidgets.QPushButton(self.groupBox)
-        self.btn_buscar.setGeometry(QtCore.QRect(30, 60, 121, 41))
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setGeometry(QtCore.QRect(10, 0, 1151, 1181))
+        self.tabWidget.setMaximumSize(QtCore.QSize(1151, 16777215))
+        self.tabWidget.setObjectName("tabWidget")
+        self.tabWidgetPage1 = QtWidgets.QWidget()
+        self.tabWidgetPage1.setObjectName("tabWidgetPage1")
+        self.btn_buscar = QtWidgets.QPushButton(self.tabWidgetPage1)
+        self.btn_buscar.setGeometry(QtCore.QRect(20, 20, 121, 41))
         self.btn_buscar.setObjectName("btn_buscar")
-        self.ln_ruta_archivo = QtWidgets.QLineEdit(self.groupBox)
-        self.ln_ruta_archivo.setGeometry(QtCore.QRect(160, 60, 691, 41))
+        self.ln_ruta_archivo = QtWidgets.QLineEdit(self.tabWidgetPage1)
+        self.ln_ruta_archivo.setGeometry(QtCore.QRect(150, 20, 691, 41))
         self.ln_ruta_archivo.setDragEnabled(False)
         self.ln_ruta_archivo.setReadOnly(True)
         self.ln_ruta_archivo.setObjectName("ln_ruta_archivo")
-        self.frame = QtWidgets.QFrame(self.groupBox)
-        self.frame.setGeometry(QtCore.QRect(10, 130, 1131, 971))
+        self.frame = QtWidgets.QFrame(self.tabWidgetPage1)
+        self.frame.setGeometry(QtCore.QRect(20, 70, 1171, 981))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -1223,27 +1226,45 @@ class Ui_MainWindow(object):
         self.label_7.setStyleSheet("font: 10pt \"Lucida Sans Unicode\";")
         self.label_7.setObjectName("label_7")
         self.txt_errores = QtWidgets.QTextEdit(self.frame)
-        self.txt_errores.setGeometry(QtCore.QRect(450, 650, 671, 311))
+        self.txt_errores.setGeometry(QtCore.QRect(440, 610, 671, 311))
         self.txt_errores.setObjectName("txt_errores")
         self.label_4 = QtWidgets.QLabel(self.frame)
-        self.label_4.setGeometry(QtCore.QRect(450, 620, 271, 20))
+        self.label_4.setGeometry(QtCore.QRect(470, 580, 271, 20))
         self.label_4.setStyleSheet("font: 10pt \"Lucida Sans Unicode\";")
         self.label_4.setObjectName("label_4")
-        self.btn_exportar = QtWidgets.QPushButton(self.groupBox)
-        self.btn_exportar.setGeometry(QtCore.QRect(1030, 1120, 111, 41))
+        self.btn_exportar = QtWidgets.QPushButton(self.frame)
+        self.btn_exportar.setGeometry(QtCore.QRect(110, 660, 181, 71))
         self.btn_exportar.setObjectName("btn_exportar")
+        self.tabWidget.addTab(self.tabWidgetPage1, "")
+        self.parserPage = QtWidgets.QWidget()
+        self.parserPage.setObjectName("parserPage")
+        self.btn_buscar_2 = QtWidgets.QPushButton(self.parserPage)
+        self.btn_buscar_2.setGeometry(QtCore.QRect(10, 30, 121, 41))
+        self.btn_buscar_2.setObjectName("btn_buscar_2")
+        self.ln_ruta_archivo_2 = QtWidgets.QLineEdit(self.parserPage)
+        self.ln_ruta_archivo_2.setGeometry(QtCore.QRect(150, 30, 691, 41))
+        self.ln_ruta_archivo_2.setDragEnabled(False)
+        self.ln_ruta_archivo_2.setReadOnly(True)
+        self.ln_ruta_archivo_2.setObjectName("ln_ruta_archivo_2")
+        self.txt_derivacion = QtWidgets.QTextEdit(self.parserPage)
+        self.txt_derivacion.setGeometry(QtCore.QRect(160, 100, 681, 341))
+        self.txt_derivacion.setObjectName("txt_derivacion")
+        self.pushButton = QtWidgets.QPushButton(self.parserPage)
+        self.pushButton.setGeometry(QtCore.QRect(270, 460, 431, 281))
+        self.pushButton.setObjectName("pushButton")
+        self.tabWidget.addTab(self.parserPage, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.groupBox.setTitle(_translate("MainWindow", "Analizador Léxico "))
         self.btn_buscar.setText(_translate("MainWindow", "Buscar"))
         item = self.tb_resultado.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Tipo"))
@@ -1263,3 +1284,6 @@ class Ui_MainWindow(object):
         self.label_7.setText(_translate("MainWindow", "Código Fuente"))
         self.label_4.setText(_translate("MainWindow", "Carácteres No Definidos"))
         self.btn_exportar.setText(_translate("MainWindow", "Exportar"))
+        self.btn_buscar_2.setText(_translate("MainWindow", "Buscar"))
+        self.pushButton.setText(_translate("MainWindow", "ARBOL"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.parserPage), _translate("MainWindow", "Página"))
