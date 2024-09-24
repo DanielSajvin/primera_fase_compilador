@@ -9,7 +9,7 @@ import os
 
 
 Ui_MainWindow, QMainWindow = loadUiType(
-    os.path.join(os.path.dirname(__file__), "views", "principal.ui")
+    os.path.join(os.path.dirname(__file__), "views", ".ui")
 )
 
 
