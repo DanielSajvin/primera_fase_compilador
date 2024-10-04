@@ -1,1 +1,14 @@
-if (x < 5) { y = 2; } else if (x > 10) { y = 3; }
+S -> funcion
+funcion -> tipo identificador ( parametro ) { S }
+S -> declaracion S'
+declaracion -> tipo identificador = E ;
+S' -> if ( E ) { S } else { S } S''
+E -> identificador > numero
+S -> mientras ( E ) { asignacion S }
+asignacion -> identificador = E ;
+E -> identificador * identificador
+asignacion -> identificador = E ;
+E -> identificador - numero
+asignacion -> identificador = E ;
+S -> print ( cadena , E ) ;
+S -> regresar E ;

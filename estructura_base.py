@@ -23,6 +23,10 @@ def definir_estructura_base(expresion):
     elif expresion.startswith("do"):
         return "S -> do { C } while (E);"
 
+
+
+
+
     # Si no se reconoce la expresión
     else:
         return "Estructura no reconocida o expresión no soportada"

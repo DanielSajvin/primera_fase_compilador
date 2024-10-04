@@ -360,11 +360,18 @@ class MainMenuPrincipal(QMainWindow, Ui_MainWindow):
     def extraer_expresiones(self, data):
         expresiones = {}
 
+        # Buscar todas las asignaciones de variables
+        asignaciones = re.findall(r'(\w+)\s*=\s*(.*?);', data)
+
         # Buscar todas las condiciones que están entre paréntesis
         condiciones = re.findall(r'\((.*?)\)', data)
 
         # Buscar todos los cuerpos que están entre llaves, incluyendo el contenido entre ellas
         cuerpos = re.findall(r'\{(.*?)\}', data, re.DOTALL)
+
+        # Asignar las asignaciones encontradas al diccionario
+        for i, (var, expr) in enumerate(asignaciones):
+            expresiones[f'asignacion_{i + 1}'] = f'{var} = {expr}'
 
         # Asignar las condiciones encontradas al diccionario
         for i, condicion in enumerate(condiciones):

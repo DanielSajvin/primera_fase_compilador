@@ -1,6 +1,7 @@
 import graphviz
 import os
 
+
 def dibujar_arbol(estructura_base, expresiones):
     try:
         dot = graphviz.Digraph(comment='Árbol de Derivación', format='png')
@@ -11,6 +12,14 @@ def dibujar_arbol(estructura_base, expresiones):
 
         # Nodo raíz
         dot.node('S', 'S')
+
+        # Verificar si hay asignaciones al principio
+        asignaciones = [key for key in expresiones.keys() if key.startswith('asignacion')]
+        if asignaciones:
+            for i, asignacion_key in enumerate(asignaciones, start=1):
+                asignacion = expresiones[asignacion_key]
+                dot.node(f'asignacion_{i}', asignacion)
+                dot.edge('S', f'asignacion_{i}')
 
         # Verificar si es una expresión if-else
         if 'if' in estructura_base:
@@ -39,7 +48,22 @@ def dibujar_arbol(estructura_base, expresiones):
             dot.edge('3', '6')  # Condición del else if
             dot.edge('3', '7')  # Cuerpo del else if
 
-        # Verificar si es un ciclo while
+            # Desglosar el ciclo while dentro del cuerpo
+            if 'while' in cuerpo_1:
+                dot.node('8', 'while (E)')
+                dot.edge('5', '8')  # Conectar el cuerpo al ciclo while
+
+                condicion_while = expresiones.get('condicion_while', 'Condición del while no encontrada')
+                cuerpo_while = expresiones.get('cuerpo_while', 'Cuerpo del while no encontrado')
+
+                dot.node('9', condicion_while)
+                dot.node('10', cuerpo_while)
+
+                # Conectar la condición y el cuerpo del while
+                dot.edge('8', '9')  # Condición del while
+                dot.edge('8', '10')  # Cuerpo del while
+
+        # Verificar si es un ciclo while independiente
         elif 'while' in estructura_base:
             dot.node('1', 'while (E)')
             dot.node('2', '{ C }')

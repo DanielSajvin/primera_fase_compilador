@@ -3,18 +3,13 @@ digraph {
 	rankdir=TB size="5,5"
 	node [fontsize=12 shape=ellipse]
 	S [label=S]
-	1 [label="if (E)"]
-	2 [label="{ C }"]
-	3 [label="else { C }"]
-	4 [label="x < 5"]
-	5 [label="y = 2;"]
-	6 [label="x > 10"]
-	7 [label="y = 3;"]
-	S -> 1
-	S -> 2
-	S -> 3
-	1 -> 4
-	2 -> 5
-	3 -> 6
-	3 -> 7
+	asignacion_1 [label="identificador = E "]
+	S -> asignacion_1
+	asignacion_2 [label="identificador = E "]
+	S -> asignacion_2
+	asignacion_3 [label="identificador = E "]
+	S -> asignacion_3
+	asignacion_4 [label="identificador = E "]
+	S -> asignacion_4
+	error [label="Estructura no reconocida"]
 }
