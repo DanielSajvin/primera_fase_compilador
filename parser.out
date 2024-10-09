@@ -1,0 +1,583 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ASIGNACION
+    DIVISION
+    LLAVE_DERECHA
+    LLAVE_IZQUIERDA
+    MULTIPLICACION
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement_list statement
+Rule 4     statement -> expression PUNTO_Y_COMA
+Rule 5     statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+Rule 6     statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+Rule 7     statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+Rule 8     expression -> term
+Rule 9     expression -> expression MAS term
+Rule 10    expression -> expression MENOS term
+Rule 11    expression -> expression PORCENTAJE term
+Rule 12    expression -> expression IGUALDAD term
+Rule 13    expression -> expression DIFERENTE term
+Rule 14    term -> IDENTIFICADOR
+Rule 15    term -> NUMERO
+
+Terminals, with rules where they appear
+
+ASIGNACION           : 
+CADENA               : 7
+DIFERENTE            : 13
+DIVISION             : 
+DOS_PUNTOS           : 5 6 6
+IDENTIFICADOR        : 14
+IGUALDAD             : 12
+IMPRIMIR             : 7
+LLAVE_DERECHA        : 
+LLAVE_IZQUIERDA      : 
+MAS                  : 9
+MENOS                : 10
+MULTIPLICACION       : 
+NUMERO               : 15
+PARENTESIS_DERECHO   : 5 6 7
+PARENTESIS_IZQUIERDO : 5 6 7
+PORCENTAJE           : 11
+PUNTO_Y_COMA         : 4 7
+SI                   : 5 6
+SINO                 : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 4 5 6 9 10 11 12 13
+program              : 0
+statement            : 2 3
+statement_list       : 1 3 5 6 6
+term                 : 8 9 10 11 12 13
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . expression PUNTO_Y_COMA
+    (5) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (7) statement -> . IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+    (8) expression -> . term
+    (9) expression -> . expression MAS term
+    (10) expression -> . expression MENOS term
+    (11) expression -> . expression PORCENTAJE term
+    (12) expression -> . expression IGUALDAD term
+    (13) expression -> . expression DIFERENTE term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    SI              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    expression                     shift and go to state 4
+    term                           shift and go to state 7
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . expression PUNTO_Y_COMA
+    (5) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (7) statement -> . IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+    (8) expression -> . term
+    (9) expression -> . expression MAS term
+    (10) expression -> . expression MENOS term
+    (11) expression -> . expression PORCENTAJE term
+    (12) expression -> . expression IGUALDAD term
+    (13) expression -> . expression DIFERENTE term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    SI              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    statement                      shift and go to state 10
+    expression                     shift and go to state 4
+    term                           shift and go to state 7
+
+state 3
+
+    (2) statement_list -> statement .
+
+    SI              reduce using rule 2 (statement_list -> statement .)
+    IMPRIMIR        reduce using rule 2 (statement_list -> statement .)
+    IDENTIFICADOR   reduce using rule 2 (statement_list -> statement .)
+    NUMERO          reduce using rule 2 (statement_list -> statement .)
+    $end            reduce using rule 2 (statement_list -> statement .)
+    SINO            reduce using rule 2 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> expression . PUNTO_Y_COMA
+    (9) expression -> expression . MAS term
+    (10) expression -> expression . MENOS term
+    (11) expression -> expression . PORCENTAJE term
+    (12) expression -> expression . IGUALDAD term
+    (13) expression -> expression . DIFERENTE term
+
+    PUNTO_Y_COMA    shift and go to state 11
+    MAS             shift and go to state 12
+    MENOS           shift and go to state 13
+    PORCENTAJE      shift and go to state 14
+    IGUALDAD        shift and go to state 15
+    DIFERENTE       shift and go to state 16
+
+
+state 5
+
+    (5) statement -> SI . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> SI . PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+
+    PARENTESIS_IZQUIERDO shift and go to state 17
+
+
+state 6
+
+    (7) statement -> IMPRIMIR . PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+
+    PARENTESIS_IZQUIERDO shift and go to state 18
+
+
+state 7
+
+    (8) expression -> term .
+
+    PUNTO_Y_COMA    reduce using rule 8 (expression -> term .)
+    MAS             reduce using rule 8 (expression -> term .)
+    MENOS           reduce using rule 8 (expression -> term .)
+    PORCENTAJE      reduce using rule 8 (expression -> term .)
+    IGUALDAD        reduce using rule 8 (expression -> term .)
+    DIFERENTE       reduce using rule 8 (expression -> term .)
+    PARENTESIS_DERECHO reduce using rule 8 (expression -> term .)
+
+
+state 8
+
+    (14) term -> IDENTIFICADOR .
+
+    PUNTO_Y_COMA    reduce using rule 14 (term -> IDENTIFICADOR .)
+    MAS             reduce using rule 14 (term -> IDENTIFICADOR .)
+    MENOS           reduce using rule 14 (term -> IDENTIFICADOR .)
+    PORCENTAJE      reduce using rule 14 (term -> IDENTIFICADOR .)
+    IGUALDAD        reduce using rule 14 (term -> IDENTIFICADOR .)
+    DIFERENTE       reduce using rule 14 (term -> IDENTIFICADOR .)
+    PARENTESIS_DERECHO reduce using rule 14 (term -> IDENTIFICADOR .)
+
+
+state 9
+
+    (15) term -> NUMERO .
+
+    PUNTO_Y_COMA    reduce using rule 15 (term -> NUMERO .)
+    MAS             reduce using rule 15 (term -> NUMERO .)
+    MENOS           reduce using rule 15 (term -> NUMERO .)
+    PORCENTAJE      reduce using rule 15 (term -> NUMERO .)
+    IGUALDAD        reduce using rule 15 (term -> NUMERO .)
+    DIFERENTE       reduce using rule 15 (term -> NUMERO .)
+    PARENTESIS_DERECHO reduce using rule 15 (term -> NUMERO .)
+
+
+state 10
+
+    (3) statement_list -> statement_list statement .
+
+    SI              reduce using rule 3 (statement_list -> statement_list statement .)
+    IMPRIMIR        reduce using rule 3 (statement_list -> statement_list statement .)
+    IDENTIFICADOR   reduce using rule 3 (statement_list -> statement_list statement .)
+    NUMERO          reduce using rule 3 (statement_list -> statement_list statement .)
+    $end            reduce using rule 3 (statement_list -> statement_list statement .)
+    SINO            reduce using rule 3 (statement_list -> statement_list statement .)
+
+
+state 11
+
+    (4) statement -> expression PUNTO_Y_COMA .
+
+    SI              reduce using rule 4 (statement -> expression PUNTO_Y_COMA .)
+    IMPRIMIR        reduce using rule 4 (statement -> expression PUNTO_Y_COMA .)
+    IDENTIFICADOR   reduce using rule 4 (statement -> expression PUNTO_Y_COMA .)
+    NUMERO          reduce using rule 4 (statement -> expression PUNTO_Y_COMA .)
+    $end            reduce using rule 4 (statement -> expression PUNTO_Y_COMA .)
+    SINO            reduce using rule 4 (statement -> expression PUNTO_Y_COMA .)
+
+
+state 12
+
+    (9) expression -> expression MAS . term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    term                           shift and go to state 19
+
+state 13
+
+    (10) expression -> expression MENOS . term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    term                           shift and go to state 20
+
+state 14
+
+    (11) expression -> expression PORCENTAJE . term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    term                           shift and go to state 21
+
+state 15
+
+    (12) expression -> expression IGUALDAD . term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    term                           shift and go to state 22
+
+state 16
+
+    (13) expression -> expression DIFERENTE . term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    term                           shift and go to state 23
+
+state 17
+
+    (5) statement -> SI PARENTESIS_IZQUIERDO . expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> SI PARENTESIS_IZQUIERDO . expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (8) expression -> . term
+    (9) expression -> . expression MAS term
+    (10) expression -> . expression MENOS term
+    (11) expression -> . expression PORCENTAJE term
+    (12) expression -> . expression IGUALDAD term
+    (13) expression -> . expression DIFERENTE term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    expression                     shift and go to state 24
+    term                           shift and go to state 7
+
+state 18
+
+    (7) statement -> IMPRIMIR PARENTESIS_IZQUIERDO . CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+
+    CADENA          shift and go to state 25
+
+
+state 19
+
+    (9) expression -> expression MAS term .
+
+    PUNTO_Y_COMA    reduce using rule 9 (expression -> expression MAS term .)
+    MAS             reduce using rule 9 (expression -> expression MAS term .)
+    MENOS           reduce using rule 9 (expression -> expression MAS term .)
+    PORCENTAJE      reduce using rule 9 (expression -> expression MAS term .)
+    IGUALDAD        reduce using rule 9 (expression -> expression MAS term .)
+    DIFERENTE       reduce using rule 9 (expression -> expression MAS term .)
+    PARENTESIS_DERECHO reduce using rule 9 (expression -> expression MAS term .)
+
+
+state 20
+
+    (10) expression -> expression MENOS term .
+
+    PUNTO_Y_COMA    reduce using rule 10 (expression -> expression MENOS term .)
+    MAS             reduce using rule 10 (expression -> expression MENOS term .)
+    MENOS           reduce using rule 10 (expression -> expression MENOS term .)
+    PORCENTAJE      reduce using rule 10 (expression -> expression MENOS term .)
+    IGUALDAD        reduce using rule 10 (expression -> expression MENOS term .)
+    DIFERENTE       reduce using rule 10 (expression -> expression MENOS term .)
+    PARENTESIS_DERECHO reduce using rule 10 (expression -> expression MENOS term .)
+
+
+state 21
+
+    (11) expression -> expression PORCENTAJE term .
+
+    PUNTO_Y_COMA    reduce using rule 11 (expression -> expression PORCENTAJE term .)
+    MAS             reduce using rule 11 (expression -> expression PORCENTAJE term .)
+    MENOS           reduce using rule 11 (expression -> expression PORCENTAJE term .)
+    PORCENTAJE      reduce using rule 11 (expression -> expression PORCENTAJE term .)
+    IGUALDAD        reduce using rule 11 (expression -> expression PORCENTAJE term .)
+    DIFERENTE       reduce using rule 11 (expression -> expression PORCENTAJE term .)
+    PARENTESIS_DERECHO reduce using rule 11 (expression -> expression PORCENTAJE term .)
+
+
+state 22
+
+    (12) expression -> expression IGUALDAD term .
+
+    PUNTO_Y_COMA    reduce using rule 12 (expression -> expression IGUALDAD term .)
+    MAS             reduce using rule 12 (expression -> expression IGUALDAD term .)
+    MENOS           reduce using rule 12 (expression -> expression IGUALDAD term .)
+    PORCENTAJE      reduce using rule 12 (expression -> expression IGUALDAD term .)
+    IGUALDAD        reduce using rule 12 (expression -> expression IGUALDAD term .)
+    DIFERENTE       reduce using rule 12 (expression -> expression IGUALDAD term .)
+    PARENTESIS_DERECHO reduce using rule 12 (expression -> expression IGUALDAD term .)
+
+
+state 23
+
+    (13) expression -> expression DIFERENTE term .
+
+    PUNTO_Y_COMA    reduce using rule 13 (expression -> expression DIFERENTE term .)
+    MAS             reduce using rule 13 (expression -> expression DIFERENTE term .)
+    MENOS           reduce using rule 13 (expression -> expression DIFERENTE term .)
+    PORCENTAJE      reduce using rule 13 (expression -> expression DIFERENTE term .)
+    IGUALDAD        reduce using rule 13 (expression -> expression DIFERENTE term .)
+    DIFERENTE       reduce using rule 13 (expression -> expression DIFERENTE term .)
+    PARENTESIS_DERECHO reduce using rule 13 (expression -> expression DIFERENTE term .)
+
+
+state 24
+
+    (5) statement -> SI PARENTESIS_IZQUIERDO expression . PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> SI PARENTESIS_IZQUIERDO expression . PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (9) expression -> expression . MAS term
+    (10) expression -> expression . MENOS term
+    (11) expression -> expression . PORCENTAJE term
+    (12) expression -> expression . IGUALDAD term
+    (13) expression -> expression . DIFERENTE term
+
+    PARENTESIS_DERECHO shift and go to state 26
+    MAS             shift and go to state 12
+    MENOS           shift and go to state 13
+    PORCENTAJE      shift and go to state 14
+    IGUALDAD        shift and go to state 15
+    DIFERENTE       shift and go to state 16
+
+
+state 25
+
+    (7) statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA . PARENTESIS_DERECHO PUNTO_Y_COMA
+
+    PARENTESIS_DERECHO shift and go to state 27
+
+
+state 26
+
+    (5) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO . DOS_PUNTOS statement_list
+    (6) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO . DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+
+    DOS_PUNTOS      shift and go to state 28
+
+
+state 27
+
+    (7) statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 29
+
+
+state 28
+
+    (5) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS . statement_list
+    (6) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS . statement_list SINO DOS_PUNTOS statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . expression PUNTO_Y_COMA
+    (5) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (7) statement -> . IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+    (8) expression -> . term
+    (9) expression -> . expression MAS term
+    (10) expression -> . expression MENOS term
+    (11) expression -> . expression PORCENTAJE term
+    (12) expression -> . expression IGUALDAD term
+    (13) expression -> . expression DIFERENTE term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    SI              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    expression                     shift and go to state 4
+    statement_list                 shift and go to state 30
+    statement                      shift and go to state 3
+    term                           shift and go to state 7
+
+state 29
+
+    (7) statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA .
+
+    SI              reduce using rule 7 (statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA .)
+    IMPRIMIR        reduce using rule 7 (statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA .)
+    IDENTIFICADOR   reduce using rule 7 (statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA .)
+    NUMERO          reduce using rule 7 (statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA .)
+    $end            reduce using rule 7 (statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA .)
+    SINO            reduce using rule 7 (statement -> IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA .)
+
+
+state 30
+
+    (5) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list .
+    (6) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list . SINO DOS_PUNTOS statement_list
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . expression PUNTO_Y_COMA
+    (5) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (7) statement -> . IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+    (8) expression -> . term
+    (9) expression -> . expression MAS term
+    (10) expression -> . expression MENOS term
+    (11) expression -> . expression PORCENTAJE term
+    (12) expression -> . expression IGUALDAD term
+    (13) expression -> . expression DIFERENTE term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+  ! shift/reduce conflict for SINO resolved as shift
+  ! shift/reduce conflict for SI resolved as shift
+  ! shift/reduce conflict for IMPRIMIR resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+  ! shift/reduce conflict for NUMERO resolved as shift
+    $end            reduce using rule 5 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list .)
+    SINO            shift and go to state 31
+    SI              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+  ! SI              [ reduce using rule 5 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list .) ]
+  ! IMPRIMIR        [ reduce using rule 5 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list .) ]
+  ! IDENTIFICADOR   [ reduce using rule 5 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list .) ]
+  ! NUMERO          [ reduce using rule 5 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list .) ]
+  ! SINO            [ reduce using rule 5 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list .) ]
+
+    expression                     shift and go to state 4
+    statement                      shift and go to state 10
+    term                           shift and go to state 7
+
+state 31
+
+    (6) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO . DOS_PUNTOS statement_list
+
+    DOS_PUNTOS      shift and go to state 32
+
+
+state 32
+
+    (6) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . expression PUNTO_Y_COMA
+    (5) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (7) statement -> . IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+    (8) expression -> . term
+    (9) expression -> . expression MAS term
+    (10) expression -> . expression MENOS term
+    (11) expression -> . expression PORCENTAJE term
+    (12) expression -> . expression IGUALDAD term
+    (13) expression -> . expression DIFERENTE term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+    SI              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+    expression                     shift and go to state 4
+    statement_list                 shift and go to state 33
+    statement                      shift and go to state 3
+    term                           shift and go to state 7
+
+state 33
+
+    (6) statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . expression PUNTO_Y_COMA
+    (5) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list
+    (6) statement -> . SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list
+    (7) statement -> . IMPRIMIR PARENTESIS_IZQUIERDO CADENA PARENTESIS_DERECHO PUNTO_Y_COMA
+    (8) expression -> . term
+    (9) expression -> . expression MAS term
+    (10) expression -> . expression MENOS term
+    (11) expression -> . expression PORCENTAJE term
+    (12) expression -> . expression IGUALDAD term
+    (13) expression -> . expression DIFERENTE term
+    (14) term -> . IDENTIFICADOR
+    (15) term -> . NUMERO
+
+  ! shift/reduce conflict for SI resolved as shift
+  ! shift/reduce conflict for IMPRIMIR resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+  ! shift/reduce conflict for NUMERO resolved as shift
+    $end            reduce using rule 6 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list .)
+    SINO            reduce using rule 6 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list .)
+    SI              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+    IDENTIFICADOR   shift and go to state 8
+    NUMERO          shift and go to state 9
+
+  ! SI              [ reduce using rule 6 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list .) ]
+  ! IMPRIMIR        [ reduce using rule 6 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list .) ]
+  ! IDENTIFICADOR   [ reduce using rule 6 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list .) ]
+  ! NUMERO          [ reduce using rule 6 (statement -> SI PARENTESIS_IZQUIERDO expression PARENTESIS_DERECHO DOS_PUNTOS statement_list SINO DOS_PUNTOS statement_list .) ]
+
+    expression                     shift and go to state 4
+    statement                      shift and go to state 10
+    term                           shift and go to state 7
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SINO in state 30 resolved as shift
+WARNING: shift/reduce conflict for SI in state 30 resolved as shift
+WARNING: shift/reduce conflict for IMPRIMIR in state 30 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 30 resolved as shift
+WARNING: shift/reduce conflict for NUMERO in state 30 resolved as shift
+WARNING: shift/reduce conflict for SI in state 33 resolved as shift
+WARNING: shift/reduce conflict for IMPRIMIR in state 33 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 33 resolved as shift
+WARNING: shift/reduce conflict for NUMERO in state 33 resolved as shift

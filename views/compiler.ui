@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1145</width>
-    <height>760</height>
+    <width>1150</width>
+    <height>767</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -402,6 +402,19 @@
        </property>
        <property name="text">
         <string>Árbol de Derivación</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_arbol">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>40</y>
+         <width>571</width>
+         <height>461</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
