@@ -253,9 +253,11 @@ class MainMenuPrincipal(QMainWindow, Ui_MainWindow):
         estructura_base = definir_estructura_base(data)
         self.txt_fuente_2.setPlainText(estructura_base)
 
+        # Extraer las expresiones del texto de manera flexible
+        expresiones = self.extraer_expresiones(data)
 
-
-        self.dibujar_y_mostrar_arbol()
+        # Llamar a la función para dibujar y mostrar el árbol con las expresiones dinámicas
+        self.dibujar_y_mostrar_arbol(estructura_base, expresiones)
 
         # Lexical analysis
         lexer_instance.input(data)
@@ -323,20 +325,17 @@ class MainMenuPrincipal(QMainWindow, Ui_MainWindow):
         except FileNotFoundError:
             self.txt_fuente_2.append("\n--- parser.out no encontrado ---\n")
 
-    from PyQt5.QtGui import QPixmap
-    import os
-    import traceback
-
-    def dibujar_y_mostrar_arbol(self):
+    def dibujar_y_mostrar_arbol(self, estructura_base, expresiones):
         try:
-            # Definir la ruta absoluta de la imagen "arbol_generado.png"
-            imagen_arbol = r"C:\Users\allan\OneDrive\Documents\GitHub\primera_fase_compilador\arbol_generado.png"
+            # Dibujar el árbol de derivación, pasando tanto estructura_base como expresiones
+            imagen_arbol = dibujar_arbol(estructura_base, expresiones)
 
-            # Verificar si la imagen existe en la ruta especificada
-            if not os.path.exists(imagen_arbol):
-                print("Error: No se encontró la imagen del árbol de derivación.")
-                self.label_arbol.setText("Error: No se encontró la imagen del árbol de derivación.")
+            if not imagen_arbol or not os.path.exists(imagen_arbol):
+                print("Error: No se pudo generar la imagen del árbol de derivación.")
+                self.label_arbol.setText("Error: No se pudo generar la imagen.")
                 return
+
+            print(f"Imagen generada correctamente en: {imagen_arbol}")
 
             # Mostrar el árbol en label_arbol
             pixmap = QPixmap(imagen_arbol)
@@ -344,14 +343,49 @@ class MainMenuPrincipal(QMainWindow, Ui_MainWindow):
                 print("Error al cargar la imagen del árbol.")
                 self.label_arbol.setText("Error: No se pudo cargar el árbol de derivación.")
             else:
-                # Simplemente cargar la imagen en el QLabel sin escalado adicional
-                self.label_arbol.setPixmap(pixmap)
-                print("Imagen cargada correctamente.")
+                # Obtener el tamaño actual del QLabel
+                label_width = self.label_arbol.width()
+                label_height = self.label_arbol.height()
+
+                # Escalar la imagen para que se ajuste al tamaño del QLabel
+                scaled_pixmap = pixmap.scaled(label_width, label_height, aspectRatioMode=True)  # Mantener proporción
+                self.label_arbol.setPixmap(scaled_pixmap)
+                self.label_arbol.setScaledContents(True)  # Asegura que la imagen se ajuste al tamaño del QLabel
 
         except Exception as e:
-            print("Ocurrió un error al cargar o mostrar el árbol:")
+            print("Ocurrió un error al dibujar o mostrar el árbol.")
+            import traceback
             traceback.print_exc()
-            self.label_arbol.setText("Error: No se pudo mostrar el árbol de derivación.")
+
+    def extraer_expresiones(self, data):
+        expresiones = {}
+
+        # Buscar todas las asignaciones de variables
+        asignaciones = re.findall(r'(\w+)\s*=\s*(.*?);', data)
+
+        # Buscar todas las condiciones que están entre paréntesis
+        condiciones = re.findall(r'\((.*?)\)', data)
+
+        # Buscar todos los cuerpos que están entre llaves, incluyendo el contenido entre ellas
+        cuerpos = re.findall(r'\{(.*?)\}', data, re.DOTALL)
+
+        # Asignar las asignaciones encontradas al diccionario
+        for i, (var, expr) in enumerate(asignaciones):
+            expresiones[f'asignacion_{i + 1}'] = f'{var} = {expr}'
+
+        # Asignar las condiciones encontradas al diccionario
+        for i, condicion in enumerate(condiciones):
+            expresiones[f'condicion_{i + 1}'] = condicion.strip()
+
+        # Asignar los cuerpos encontrados al diccionario
+        for i, cuerpo in enumerate(cuerpos):
+            expresiones[f'cuerpo_{i + 1}'] = cuerpo.strip()
+
+        # Asegurarse de que haya valores por defecto en caso de que no se encuentren
+        expresiones.setdefault('condicion_1', 'Condición no encontrada')
+        expresiones.setdefault('cuerpo_1', 'Cuerpo no encontrado')
+
+        return expresiones
 
     def export_to_svg(self):
         # Código de exportación a SVG
