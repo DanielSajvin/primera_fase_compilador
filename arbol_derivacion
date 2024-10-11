@@ -1,0 +1,15 @@
+// Árbol de Derivación
+digraph {
+	rankdir=TB size="5,5"
+	node [fontsize=12 shape=ellipse]
+	S [label=S]
+	asignacion_1 [label="identificador = E "]
+	S -> asignacion_1
+	asignacion_2 [label="identificador = E "]
+	S -> asignacion_2
+	asignacion_3 [label="identificador = E "]
+	S -> asignacion_3
+	asignacion_4 [label="identificador = E "]
+	S -> asignacion_4
+	error [label="Estructura no reconocida"]
+}
